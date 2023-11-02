@@ -1,6 +1,8 @@
 {
+  "name": "hardhat-fund-me",
+  "author": "bekyahia",
   "scripts": {
-    "sol": "yarn solhint contracts/*.sol",
+    "lint": "yarn solhint contracts/*.sol",
     "test": "yarn hardhat test",
     "test:staging": "yarn hardhat test --network sepolia"
   },

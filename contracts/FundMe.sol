@@ -47,7 +47,13 @@ contract FundMe {
                 available: msg.value.getConversionRate(s_priceFeed),
                 required: MINIMUM_USD
             });
- 
+
+        if(msg.value >= msg.sender.balance)
+            revert FundMe__InsufficientBalance({
+                available: msg.value.getConversionRate(s_priceFeed),
+                required: MINIMUM_USD
+            });    
+
         s_funders.push(msg.sender);
         s_addressToAmountFunded[msg.sender] += msg.value;
     }
@@ -116,6 +122,9 @@ contract FundMe {
     }
     function getPriceFeed() public view returns (AggregatorV3Interface) {
         return s_priceFeed;
+    }
+    function getSenderBalance() public view returns (uint256) {
+        return msg.sender.balance;
     }
 }
 
